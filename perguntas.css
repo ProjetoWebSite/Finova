@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     font-family: 'Roboto', sans-serif;
+  }
+  
+  body{
+    background-color: #252630;
+    color: white;
+    font-size: 16px
+  }
+  
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+  }
+  
+  .logo-container{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  header h1 {
+    background: linear-gradient(90deg, #a259ff 0%, #a259ff 48%, #00ffae 52%, #00ffae 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  nav{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  nav a{
+    color: #00ffae;
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+  
+  .perfil-botao {
+   width: 80px;               
+    height: 80px;
+    border-radius: 50%;      
+    object-fit: cover;         
+    display: block;            
+  }
+  
+  
+  
+  section{
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #00ff66, 0 0 35px #00ff66, 0 0 45px #00ff66;
+  }
+  
+  h2{
+    color: #a259ff;
+    margin-bottom: 20px;
+  }
+  
+  label, input, select, button, p {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+  
+  input, select{
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button{
+    padding: 10px 20px;
+    background: #a259ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block; 
+  }
+  
+  #resultado-gastos{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #202040;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  footer{
+    text-align: center;
+    padding: 20px;
+    color: #cac8c862;
+  }
+  
+  .conditional-input{
+    display: none;
+    margin-top: 5px;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }

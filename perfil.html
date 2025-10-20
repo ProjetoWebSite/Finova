@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finova</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="perfil.css">
+  <link rel="icon" type="image/png" href="Finovaicon.png">
+</head>
+
+<header>
+   <div class="logo-container">
+      <img src="Finovaimg.jpeg" alt="Logo Finova" class="logo">
+      <title>Finova</title>
+      <h1>Finova</h1>
+      <a href="perguntas.html" class="btn-seta">←</a>
+    </div>
+</header>
+<body>
+
+  <div class="pagina-perfil">
+    
+   <!-- Caixa 1: Gráfico -->
+<div class="grafico-box">
+  <h2 class="titulo-grafico">Gastos por categoria</h2>
+  <div class="grafico-container">
+    <canvas id="graficoGastos"></canvas>
+  </div>
+</div>
+
+    <!-- Caixa 2: Informações do perfil -->
+    <div class="info-perfil">
+      <img src="perfilfinova-removebg-preview.png" alt="Foto do usuário" class="foto-perfil">
+      <h2>Nome do Usuário</h2>
+      <p><strong>Email:</strong> usuario@email.com</p>
+      <p><strong>Data de Cadastro:</strong> 18/05/2025</p>
+      <p><strong>Total de renda:</strong> R$ 2,400 </p>
+      
+      <div class="botoes-perfil">
+        <button class="botao-editar">Editar Perfil</button>
+        <form action="index.html" method="GET">
+          <button class="botao-sair">Sair</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module">
+    import { db } from './firebase.js';
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, async (user) => {
+      if(!user) {
+        return;
+      }
+
+      try {
+        const docRef = doc(db, 'gastos', user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if(docSnap.exists()) {
+          const data = docSnap.data();
+
+          const categorias = ['contas', 'alimentacao', 'plano_saude_valor', 'medicamentos_valor', 'cursos_valor', 'lazer_valor', 'assinaturas_valor', 'dividas_valor'];
+          const valores = categorias.map(cat => data[cat] || 0);
+
+          const ctx = document.getElementById('graficoGastos').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: categorias.map(cat => cat.replace('_valor','').replace('_',' ')),
+              datasets: [{
+                label: 'Gastos por categoria',
+                data: valores,
+                borderColor: '#a259ff',
+                backgroundColor: '#a259ff',
+                pointBackgroundColor: '#a259ff',
+                pointBorderColor: '#a259ff',
+                tension: 0.4
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: {
+                  ticks: { color: 'white' },
+                  grid: { color: 'rgba(255,255,255,0.1)' }
+                },
+                y: {
+                  ticks: {
+                    color: 'white',
+                    callback: (value) => 'R$ ' + value
+                  },
+                  grid: { color: 'rgba(255,255,255,0.1)' }
+                }
+              }
+            }
+          });
+
+        } else {
+          console.log("Nenhum gasto encontrado");
+        }
+
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>

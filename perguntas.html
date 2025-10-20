@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finova</title>
+
+  <!-- Fonte do site-->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="perguntas.css">
+
+  <!-- Ícone da aba -->
+  <link rel="icon" type="image/png" href="Finovaicon.png">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="Finovaimg.jpeg" alt="Logo Finova" class="logo">
+      <h1>Finova</h1>
+    </div>
+    <nav>
+      <a href="#simulacao-gastos">Simulação de Gastos</a>
+      <a href="#simulacao-investimentos">Simulação de Investimentos</a>
+      <a href="perfil.html"> <img src="perfilfinova-removebg-preview.png" class="perfil-botao"> </a>
+    </nav>
+  </header>
+
+  <!--Perguntas-->
+  <section id="simulacao-gastos">
+    <h2>Simulação de Gastos</h2>
+    <form id="dadosForm">
+      <label>1. Qual sua renda mensal?</label>
+      <input type="number" name="renda" placeholder="R$ 00,00" required />
+
+      <label>2. Você tem alguma outra fonte de renda?</label>
+      <select name="tem_outra_renda" class="simnao" data-target="outra_renda_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="outra_renda_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>3. Qual o valor mensal gasto em contas fixas (água, luz, gás, internet)?</label>
+      <input type="number" name="contas" placeholder="R$ 00,00" min="0" />
+
+      <label>4. Quanto você gasta por mês com alimentação?</label>
+      <input type="number" name="alimentacao" placeholder="R$ 00,00" min="0" />
+
+      <label>5. Você possui plano de saúde?</label>
+      <select name="plano_saude" class="simnao" data-target="plano_saude_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="plano_saude_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>6. Você tem despesas mensais com medicamentos?</label>
+      <select name="despesas_medicamentos" class="simnao" data-target="medicamentos_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="medicamentos_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>7. Você paga mensalidade de cursos ou faculdade?</label>
+      <select name="mensalidade_cursos" class="simnao" data-target="cursos_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="cursos_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>8. Você tem gastos mensais com lazer?</label>
+      <select name="gastos_lazer" class="simnao" data-target="lazer_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="lazer_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>9. Você paga alguma assinatura? (streaming)</label>
+      <select name="assinaturas" class="simnao" data-target="assinaturas_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="assinaturas_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <label>10. Você possui dívidas a pagar?</label>
+      <select name="dividas" class="simnao" data-target="dividas_valor">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
+      <input type="number" name="dividas_valor" class="conditional-input" placeholder="R$ 00,00" min="0" />
+
+      <button type="submit">Calcular Gastos</button>
+    </form>
+    <div id="resultado-gastos"></div>
+  </section>
+
+  <section id="simulacao-investimentos">
+    <h2>Simulação de Investimentos</h2>
+    <div id="resultado-investimentos">
+      <p>Complete a simulação de gastos acima para ver quanto pode investir mensalmente com segurança.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 - Finova. Todos os direitos reservados.
+  </footer>
+      
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="perguntas.js"></script>
+ 
+
+</body>
+</html>
